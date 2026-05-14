@@ -43,11 +43,10 @@ gv(std::make_unique<GameView>(std::vector<std::string>{"images/maze-a.png","imag
 	gameState.addGhosts(ghosts);
 	ghostsControl.push_back(std::make_shared<FSMController>(ghosts[0]));
 	ghostsControl.push_back(std::make_shared<DTGhostController>(ghosts[1]));
-	ghostsControl.push_back(std::make_shared<SimpleController>(ghosts[2]));
+	ghostsControl.push_back(std::make_shared<PinkyController>(ghosts[2]));
 	ghostsControl.push_back(std::make_shared<RandomController>(ghosts[3]));
 	//  ghostsControl.push_back(std::make_shared<BlinkyController>(ghosts[0]));
 	//  ghostsControl.push_back(std::make_shared<InkyController>(ghosts[1]));
-	//  ghostsControl.push_back(std::make_shared<PinkyController>(ghosts[2]));
 	//  ghostsControl.push_back(std::make_shared<SueController>(ghosts[3]));
 }
 
