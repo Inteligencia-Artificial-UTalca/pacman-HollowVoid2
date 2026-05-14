@@ -12,6 +12,7 @@
 #include "RandomController.h"
 #include "SimpleController.h"
 #include "SimplePacmanController.h"
+#include "BTMsPacmanController.h"
 #include "DTGhostController.h"
 #include "FSMController.h"
 #include "Ghost.h"
@@ -32,7 +33,8 @@ gv(std::make_unique<GameView>(std::vector<std::string>{"images/maze-a.png","imag
 	auto pacman=std::make_shared<MsPacMan>(gameState.getMaze().getPacmanStart());
 	gameState.addPacMan(pacman);
 	//pacmanControl=std::make_shared<KeyboardController>(pacman);
-	pacmanControl=std::make_shared<SimplePacmanController>(pacman);
+	pacmanControl=std::make_shared<BTMsPacmanController>(pacman);
+	// pacmanControl=std::make_shared<SimplePacmanController>(pacman);
 	// pacmanControl=std::make_shared<PacmanController>(pacman);
 
 	std::vector<std::shared_ptr<Ghost>> ghosts;
