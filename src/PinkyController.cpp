@@ -58,13 +58,20 @@ public:
 class TimeOutPinky : public Behavior {
 private:
     std::chrono::time_point<std::chrono::high_resolution_clock> lastTime;
+    static constexpr int SCATTER_CYCLE = 27;
+    static constexpr int SCATTER_DURATION = 7;
 public:
     TimeOutPinky() : Behavior() {
         lastTime = std::chrono::high_resolution_clock::now();
     }
+    virtual void onInitialize() override {
+        lastTime = std::chrono::high_resolution_clock::now();
+    }
     virtual Status update() override {
-        std::chrono::duration<float> elapsed = std::chrono::high_resolution_clock::now() - lastTime;
-        if(((int)elapsed.count() % 27) < 7) {
+        auto now = std::chrono::high_resolution_clock::now();
+        std::chrono::duration<double> elapsed = now - lastTime;
+        int elapsedSeconds = static_cast<int>(elapsed.count());
+        if((elapsedSeconds % SCATTER_CYCLE) < SCATTER_DURATION) {
             return BH_SUCCESS;
         }
         return BH_FAILURE;

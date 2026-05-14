@@ -161,6 +161,17 @@ protected:
         m_CurrentChild = m_Children.begin();
     }
 
+    virtual void onTerminate(Status s)
+    {
+        if (s == BH_FAILURE)
+        {
+            for (Behaviors::iterator it = m_Children.begin(); it != m_Children.end(); ++it)
+            {
+                (*it)->reset();
+            }
+        }
+    }
+
     virtual Status update()
     {
         // Keep going until a child behavior says it's running.
@@ -207,6 +218,17 @@ protected:
     virtual void onInitialize()
     {
         m_Current = m_Children.begin();
+    }
+
+    virtual void onTerminate(Status s)
+    {
+        if (s == BH_FAILURE)
+        {
+            for (Behaviors::iterator it = m_Children.begin(); it != m_Children.end(); ++it)
+            {
+                (*it)->reset();
+            }
+        }
     }
 
     virtual Status update()
